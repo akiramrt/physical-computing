@@ -2,12 +2,12 @@
 
 #define servoPin 6
 
-Servo servo;
+Servo myServo;
 
 void setup() {
 
   Serial.begin(9600);
-  servo.attach(servoPin);
+  myServo.attach(servoPin);
 
 }
 
@@ -17,9 +17,12 @@ void loop() {
     char comando = Serial.read();
 
     if (comando == '1'){
-        servo.write(90);
-    } else if (comando == '2'){
-        servo.write(180);
+        myServo.write(90);
+
+    }else if (comando == '2'){
+        myServo.write(180);
+        
     }
   }
+
 }

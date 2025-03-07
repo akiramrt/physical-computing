@@ -13,7 +13,7 @@ hands = mp_hands.Hands()
 mp_draw = mp.solutions.drawing_utils
 
 # Abrir um vídeo MP4
-video_path = "video.mp4"  # Substitua pelo caminho do seu vídeo
+video_path = "./assets/vdo/MovimentacaoServo.mp4"  # Substitua pelo caminho do seu vídeo
 cap = cv2.VideoCapture(video_path)
 
 while cap.isOpened():
