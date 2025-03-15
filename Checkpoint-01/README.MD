@@ -1,9 +1,9 @@
 # Projeto Checkpoint 1
 
 ## Integrantes
-- Eduaro Akira Murata - 98713
-- Wesley Souza de Oliveira - 97874
-- Pedro Henrique Moraes - 98804
+- Eduardo Akira Murata     - RM98713
+- Wesley Souza de Oliveira - RM97874
+- Pedro Henrique Moraes    - RM98804
 
 ## Descrição do Projeto
 Este projeto implementa a leitura de um sensor DHT11 e o controle de um servo motor utilizando Arduino e Node-RED.
