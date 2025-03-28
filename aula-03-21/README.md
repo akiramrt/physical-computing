@@ -3,7 +3,7 @@
 ### **Se estiver usando os computadores da FIAP:**
 
 1. Abra o **Anaconda Navigator**.
-![ANACONDA NAVIGATOR](/aula-03-07/assets/img/AnacondaNavigator.png)
+![ANACONDA NAVIGATOR](/aula-03-28/assets/img/anacondaNavigator.png)
 2. No **CMD.exe Prompt**, execute os seguintes comandos:
 
 ### **Se estiver no seu próprio computador:**
@@ -18,6 +18,7 @@ pip install pyserial  # Integração do Arduino com Python
 pip install mediapipe
 pip install --upgrade mediapipe opencv-python numpy
 pip install matplotlib opencv-python notebook pyserial mediapipe
+pip install matplotlib notebook opencv-python pyserial mediapipe numpy
 ```
 
 ## 2. Componentes Usados no Circuito
@@ -26,30 +27,21 @@ Os seguintes componentes são utilizados no projeto:
 
 - **Arduino Uno**
 - **Board**
-- **Led Amarelo**
 - **Led Verde**
-- **Led Vermelho**
-- **3 Resistores**
+- **1 Resistor**
 
-O circuito montado no SimulIDE ficará assim:
+O circuito montado ficará assim:
 
-![Circuito](/aula-03-21/assets/img/circuito.png)
-
-### **Configuração da Porta Serial no Código**
-No arquivo **face.py**, edite a linha **8** para corresponder porta informada pelo arduino IDE (exemplo: **COM5**):
-
-```python
-arduino = serial.Serial('COM5', 9600, timeout=1)
-```
+![Circuito](/aula-03-28/assets/img/circuito.png)
 
 ## 3. Usando Webcam ou MP4
 
-O código principal é **face.py**.
+O código principal é **video_pose.py**.
 
 Existem duas formas de rodar o código, dependendo da entrada de vídeo desejada.
 
 ### **1. Usar a Webcam**
-Se deseja utilizar a webcam para detecção, altere a linha **18** do código **face.py**, substituindo `video_path` por `0`:
+Se deseja utilizar a webcam para detecção, altere a linha **11** do código **video_pose.py**, substituindo `video_path` por `0`:
 
 ```python
 cap = cv2.VideoCapture(0)
@@ -63,38 +55,46 @@ cap = cv2.VideoCapture(video_path)
 ```
 
 ## 4. Executando o Código
-Aula de hoje foi para mostrar uma funcionalidade do MediaPipe, com o reconhecimento dos olhos.
-O mediaPipe identifica os valores do olho aberto e do olho fechado.
-Quando o olho está aberto, o led verde fica ligado.
-Quando o olho está piscando, o led amarelo fica ligado e caso o olho fique muito tempo fechado, o led vermelho acenderá.
+
+### Objetivo da Demonstração
+Implementar um sistema de reconhecimento de movimentos utilizando MediaPipe para monitorar exercícios de rosca direta, com feedback visual via Arduino.
+
+### Funcionamento do Sistema
+
+1. **Reconhecimento Corporal**:
+   - MediaPipe identifica pontos-chave do membro superior esquerdo:
+     - Ombro
+     - Cotovelo
+     - Punho
+
+2. **Contagem de Repetições**:
+   - Analisa o movimento angular entre as articulações
+   - Contabiliza cada repetição completa do exercício
+
+3. **Feedback Visual**:
+   - Sistema inicia com todos os LEDs apagados
+   - Ao atingir 12 repetições completas:
+     - ✅ LED verde é acionado como sinal de conclusão
+
+### Fluxo de Operação
+```mermaid
+graph TD
+    A[MediaPipe detecta articulações] --> B{Ângulo do cotovelo}
+    B -->|Movimento válido| C[Incrementa contador]
+    C --> D{Contador = 12?}
+    D -->|Sim| E[Aciona LED verde]
+    D -->|Não| F[Continua monitoramento]
 
 ```python
-if ear <= LIMIAR_FECHAR:
-    frames_fechado += 1
-
-    if frames_fechado == 3:
-        piscadas += 1
-        arduino.write(b'Y')  # Piscada = LED verde (normal)
-
-    elif frames_fechado > LIMIAR_COCHILO:
-        arduino.write(b'R')  # Cochilo detectado = LED vermelho + buzzer
-
-elif ear > LIMIAR_ABRIR:
-    frames_fechado = 0
-    arduino.write(b'G')  # Olhos abertos = estado normal
+if contador == 12:
+    arduino.write(b'G')  
 ```
 
-1. Execute o código arduino.py no terminal:
+4. **Execute o código arduino.py no terminal**:
     ```sh
-    python face.py
+    python video_pose.py
     ```
-
-2. Vídeo de demonstração
-![Demonstração](/aula-03-21/assets/vdi/demonstracao.mp4)
 
 ## 5. Observações Finais
 
 * Caso o vídeo não abra, verifique se o arquivo selfie.mp4 está localizado corretamente em assets/vid/.
-
-
-
