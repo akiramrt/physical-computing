@@ -1,9 +1,9 @@
-#define ledPin 13
+#define led 13
  
 void setup() {
   
   Serial.begin(9600);
-  pinMode(ledPin,OUTPUT);
+  pinMode(led,OUTPUT);
  
 }
  
@@ -11,12 +11,17 @@ void loop() {
 
   if(Serial.available() > 0){
 
-    char command = Serial.read();
+    char comando = Serial.read();
 
-    if(command == '1'){
-      digitalWrite(ledPin, HIGH);
-    } else if (command == '0'){
-      digitalWrite(ledPin, LOW);
+    if(comando == '1'){
+
+      digitalWrite(led, HIGH);
+
+    } else if (comando == '0'){
+
+      digitalWrite(led, LOW);
+
     }
   }
+
 }
