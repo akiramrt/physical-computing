@@ -3,7 +3,7 @@
 ### **Se estiver usando os computadores da FIAP:**
 
 1. Abra o **Anaconda Navigator**.
-![ANACONDA NAVIGATOR](/2025_03_28/assets/img/anacondaNavigator.png)
+![ANACONDA NAVIGATOR](/aula-03-28/assets/img/anacondaNavigator.png)
 2. No **CMD.exe Prompt**, execute os seguintes comandos:
 
 ### **Se estiver no seu próprio computador:**
@@ -78,7 +78,7 @@ elif ear > LIMIAR_ABRIR:
     ```
 
 2. Vídeo de demonstração
-![Demonstração](/2025_03_21/assets/vdi/demonstracao.mp4)
+![Demonstração](/aula-03-21/assets/vdi/demonstracao.mp4)
 
 ## 5. Observações Finais
 

@@ -15,7 +15,7 @@ arduino = serial.Serial('COM5', 9600, timeout=1)
 contador = 0
 fase = None  # 'descendo' ou 'subindo'
 
-video_path = os.path.join(os.getcwd(), '2025_03_28', 'assets', 'vid', 'exercicio.mp4')
+video_path = os.path.join(os.getcwd(), 'aula-03-28', 'assets', 'vid', 'exercicio.mp4')
 
 # Abre a webcam
 cap = cv2.VideoCapture(video_path)
