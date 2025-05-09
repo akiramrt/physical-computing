@@ -1,8 +1,12 @@
 import numpy as np
 
 #Tabela verdade AND
+# entradas = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+# saidas = np.array([0, 0, 0, 1])
+
+#Tabela verdade OR
 entradas = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-saidas = np.array([0, 0, 0, 1])
+saidas = np.array([0, 1, 1, 1])
 
 #pesos e bias
 pesos = np.zeros(2)
