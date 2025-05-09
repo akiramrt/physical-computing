@@ -9,7 +9,7 @@ void setup() {
 }
 
 int ativacao(float soma) {
-  return (soma >= 0) ? 1 : 0;
+  return (soma >= 1) ? 1 : 0;
 }
 
 void loop() {
